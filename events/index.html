@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MainCtrl" style="border: 3px solid greenyellow">
+    <input type="text" ng-model="value">
+    <div>
+        changes: {{changes}}
+    </div>
+
+    <button ng-click="clearWatch()">Clear Event Listener</button>
+</div>
+
+<div ng-controller="AnotherCtrl" style="border: 1px solid">
+    magic number {{magicNumber}}
+    <button ng-click="notifyAll()">Notify</button>
+
+    <div ng-controller="NestedCtrl" style="border: 3px solid red">
+        nested value: {{value}}
+    </div>
+
+</div>
+</body>
+</html>

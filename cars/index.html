@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+<car-input-form></car-input-form>
+
+<div>
+    <h4>Car list</h4>
+    <car-list-item ng-repeat="car in cars"></car-list-item>
+</div>
+
+</body>
+</html>

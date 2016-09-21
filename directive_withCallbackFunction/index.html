@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+<div>
+    <button ng-click="dialogIsHidden = !dialogIsHidden">ShowDialog</button>
+    {{text}}
+
+    <my-dialog ng-hide="dialogIsHidden" close="onClose()">
+        TEXT: {{text}}
+    </my-dialog>
+</div>
+</body>
+</html>
