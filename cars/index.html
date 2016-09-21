@@ -6,8 +6,33 @@
     <script src="../node_modules/angular/angular.min.js"></script>
     <script src="app.js"></script>
 </head>
+
+<style>
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+    }
+    .popup .content {
+        background: black;
+        width: 50%;
+        margin:auto;
+        margin-top:200px;
+        padding: 50px;
+        color: white;
+    }
+</style>
+
 <body ng-app="myApp" ng-controller="MainCtrl">
 <car-input-form></car-input-form>
+
+
+<edit-popup save="">
+    <car-input-form></car-input-form>
+</edit-popup>
 
 <div>
     <h4>Car list</h4>

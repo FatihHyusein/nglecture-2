@@ -16,14 +16,6 @@ angular.module('myApp', [])
                     $scope.model = '';
                     $scope.year = '';
                 };
-
-                $scope.editCar = function () {
-                    $scope.cars = carSvc.updateCarByModel({
-                        make: $scope.make,
-                        model: $scope.model,
-                        year: $scope.year
-                    });
-                }
             }
         }
     })
@@ -33,27 +25,30 @@ angular.module('myApp', [])
             templateUrl: './carListItem.html',
             controller: function ($scope) {
                 $scope.edit = function () {
-
+                    $scope.isHiddenPopup = true;
                 };
 
-                $scope.remove = function () {
-                    carSvc.removeCarByModel($scope.car);
+                $scope.remove = function ($index) {
+                    carSvc.removeCar($index);
                 };
             }
         }
     })
 
-    .directive('myDialog', function () {
+    .directive('editPopup', function () {
         return {
             scope: {
-                close: '&close'
+                save: '&save'
             },
             transclude: true,
-            template: '<h1>DIALOG</h1>' +
-            '<div style="border: 1px solid red">' +
-            '<div class="dialog" ng-transclude></div>' +
-            '</div>' +
-            '<button ng-click="close()">Close</button>'
+            templateUrl: './editPopup.html',
+            controller: function ($scope) {
+                $scope.isHiddenPopup = false;
+
+                $scope.close = function () {
+                    $scope.isHiddenPopup = true;
+                }
+            }
         }
     })
 
@@ -79,21 +74,13 @@ angular.module('myApp', [])
                 }
                 return carsArray;
             },
-            removeCarByModel: function (car) {
-                var carIdx = findCarIdxByModel(car.model);
-
-                if (carIdx > -1) {
-                    carsArray.splice(carIdx, 1);
-                }
+            removeCar: function ($index) {
+                carsArray.splice($index, 1);
 
                 return carsArray;
             },
-            updateCarByModel: function (car) {
-                var carIdx = findCarIdxByModel(car.model);
-
-                if (carIdx > -1) {
-                    carsArray.splice(carIdx, 1);
-                }
+            updateCar: function ($index, carData) {
+                carsArray[$index] = carData;
 
                 return carsArray;
             }
